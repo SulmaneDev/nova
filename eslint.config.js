@@ -1,7 +1,7 @@
 import { defineConfig } from 'eslint/config';
-import typescript from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import globals from 'globals';
+import eslintPluginImport from 'eslint-plugin-import'; 
 
 export default defineConfig([
   {
@@ -31,6 +31,7 @@ export default defineConfig([
     },
     plugins: {
       '@typescript-eslint': tseslint.plugin,
+      import: eslintPluginImport,
     },
     rules: {
       '@typescript-eslint/explicit-function-return-type': 'warn',
