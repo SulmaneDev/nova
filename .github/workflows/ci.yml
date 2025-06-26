@@ -1,0 +1,36 @@
+name: CI
+
+on:
+    push:
+        branches: [develop, 'comp/**', 'feature/**']
+    pull_request:
+            branches: [develop, 'comp/**', 'feature/**']
+
+jobs:
+    install-and-test:
+        name: Lint • Type Check • Test • Build
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  cache: 'pnpm'
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 8
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Lint
+              run: pnpm lint
+
+            - name: Prettier Check
+              run: pnpm prettier --check .
