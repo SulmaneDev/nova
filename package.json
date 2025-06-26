@@ -1,0 +1,73 @@
+{
+  "name": "nova",
+  "version": "1.0.0",
+  "description": "Nova is a powerful, scalable suite of components designed for the Novarel Framework.",
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "pnpm jest",
+    "format": "pnpm prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "build": "pnpm swc src/index.ts --config-file .swcrc --out-file dist/index.js",
+    "build:watch": "pnpm build -- --watch",
+    "types": "pnpm tsc --emitDeclarationOnly --declarationDir dist/types",
+    "lint": "eslint src --ext .ts",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SulmaneDev/novarel.git"
+  },
+  "keywords": [
+    "Novarel",
+    "Nova",
+    "Framework",
+    "HTTP",
+    "ORM",
+    "Foundation",
+    "Components",
+    "TypeScript",
+    "Web",
+    "framework",
+    "Backend"
+  ],
+  "author": "Muhammad Sulman <whomaderules@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SulmaneDev/novarel/issues"
+  },
+  "homepage": "https://github.com/SulmaneDev/novarel#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.29.0",
+    "@swc/cli": "^0.7.7",
+    "@swc/core": "^1.12.6",
+    "@swc/jest": "^0.2.38",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.4",
+    "chokidar": "^4.0.3",
+    "eslint": "^9.29.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "globals": "^16.2.0",
+    "husky": "^9.1.7",
+    "jest": "^30.0.3",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.1",
+    "standard-version": "^9.5.0",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.0"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.2.2"
+  },
+  "**/*.{ts,tsx,js,jsx}": [
+    "eslint --fix",
+    "prettier --write"
+  ],
+  "engines": {
+    "node": ">=20.11.1"
+  }
+}
