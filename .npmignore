@@ -1,0 +1,38 @@
+# Ignore source code
+src/
+test/
+tests/
+__tests__/
+coverage/
+
+# Ignore configs and meta files
+*.ts
+*.tsx
+*.swcrc
+*.cjs.swcrc
+tsconfig.json
+tsconfig.*.json
+jest.config.*
+.eslintrc.*
+.prettierrc*
+.commitlintrc*
+.commitlint.config.*
+.husky/
+.vscode/
+.pnpm-debug.log
+package-lock.json
+yarn.lock
+
+# Ignore build tools or local envs
+.env
+.env.*
+.nyc_output/
+*.log
+
+# Ignore docs if not needed
+*.md
+!README.md  # Except README
+
+# Ignore lockfiles if not used
+*.tgz
+*.zip
