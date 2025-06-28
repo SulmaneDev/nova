@@ -18,11 +18,16 @@ module.exports = {
                     },
                     target: 'es2021',
                 },
+                module: {
+                    type: 'esmodule',
+                },
             },
         ],
     },
     moduleNameMapper: {
-        '^@/(.*)$': '<rootDir>/src/$1',
+        '^@utils/(.*)$': '<rootDir>/src/utils/$1',
+        '^@foundation/(.*)$': '<rootDir>/src/foundation/$1',
+        '^(\\.{1,2}/.*)\\.js$': '$1',
     },
     transformIgnorePatterns: ['<rootDir>/node_modules/'],
     collectCoverage: true,
@@ -31,5 +36,5 @@ module.exports = {
     coverageReporters: ['json', 'lcov', 'text', 'clover'],
     clearMocks: true,
     resetMocks: true,
-    setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+    setupFiles: ['<rootDir>/jest.setup.ts'],
 };

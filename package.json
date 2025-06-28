@@ -23,19 +23,20 @@
   ],
   "type": "module",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/types/index.d.ts"
+    "./foundation": {
+      "import": "./dist/esm/src/foundation.js",
+      "require": "./dist/cjs/src/foundation.js",
+      "types": "./dist/types/foundation.d.ts"
     },
     "./package.json": "./package.json"
   },
   "scripts": {
     "test": "pnpm jest",
+    "test:coverage": "pnpm jest --coverage",
     "prepublishOnly": "pnpm run build",
     "format": "pnpm prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
-    "build:esm": "pnpm swc src/index.ts --config-file .swcrc --out-file dist/index.js",
-    "build:cjs": "pnpm swc src/index.ts --config-file .cjs.swcrc --out-file dist/index.cjs",
+    "build:esm": "pnpm swc src --config-file .swcrc --out-dir dist/esm",
+    "build:cjs": "pnpm swc src --config-file .cjs.swcrc --out-dir dist/cjs",
     "build": "pnpm build:esm && pnpm build:cjs && pnpm types",
     "build:watch": "pnpm build:esm -- --watch",
     "types": "pnpm tsc --emitDeclarationOnly --declarationDir dist/types",
