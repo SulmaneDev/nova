@@ -1,0 +1,30 @@
+{
+    "$schema": "https://swc.rs/schema.json",
+    "jsc": {
+        "target": "es2020",
+        "parser": {
+            "tsx": false,
+            "decorators": true,
+            "syntax": "typescript"
+        },
+        "minify": {
+            "compress": true
+        },
+        "transform": {
+            "decoratorMetadata": true,
+            "decoratorVersion": "2021-12",
+            "verbatimModuleSyntax": true,
+            "legacyDecorator": true
+        }
+    },
+    "minify": true,
+    "module": {
+        "strict": true,
+        "allowTopLevelThis": false,
+        "exportInteropAnnotation": true,
+        "importInterop": "node",
+        "strictMode": true,
+        "type": "commonjs"
+    },
+    "exclude": ["node_modules",".git","dist"]
+}

@@ -31,3 +31,6 @@ jobs:
 
       - name: Prettier Check
         run: pnpm format
+     
+      - name: Test the code
+        run: pnpm test
