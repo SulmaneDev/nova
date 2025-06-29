@@ -31,6 +31,5 @@ export class EventServiceProvider extends ServiceProvider {
      *
      * @returns {void}
      */
-    register(): void {
-    }
+    register(): void {}
 }

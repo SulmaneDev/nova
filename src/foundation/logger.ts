@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { Writable } from 'stream';
+import type { Writable } from 'stream';
 
 type LogLevel = 'info' | 'warning' | 'error' | 'debug' | 'notice';
 
@@ -72,7 +72,7 @@ export class Logger {
      * @param message - The main log message.
      * @param context - Additional context or metadata.
      */
-    async log(level: LogLevel, message: string, context: Record<string, any> = {}) {
+    async log(level: LogLevel, message: string, context: Record<string, any> = {}): Promise<void> {
         const payload: LogPayload = {
             level,
             message,
@@ -94,7 +94,7 @@ export class Logger {
         }
 
         const pipe = this.pipes[index];
-        const next = (p: LogPayload) => this.dispatch(index + 1, p);
+        const next = (p: LogPayload): Promise<void> => this.dispatch(index + 1, p);
 
         if (typeof pipe === 'function') {
             return pipe(payload, next);
@@ -118,7 +118,7 @@ export class Logger {
      * @param message - The message content.
      * @param context - Optional context.
      */
-    info(message: string, context?: Record<string, any>) {
+    info(message: string, context?: Record<string, any>): Promise<void> {
         return this.log('info', message, context);
     }
 
@@ -127,7 +127,7 @@ export class Logger {
      * @param message - The message content.
      * @param context - Optional context.
      */
-    error(message: string, context?: Record<string, any>) {
+    error(message: string, context?: Record<string, any>): Promise<void> {
         return this.log('error', message, context);
     }
 
@@ -136,7 +136,7 @@ export class Logger {
      * @param message - The message content.
      * @param context - Optional context.
      */
-    warning(message: string, context?: Record<string, any>) {
+    warning(message: string, context?: Record<string, any>): Promise<void> {
         return this.log('warning', message, context);
     }
 
@@ -145,7 +145,7 @@ export class Logger {
      * @param message - The message content.
      * @param context - Optional context.
      */
-    debug(message: string, context?: Record<string, any>) {
+    debug(message: string, context?: Record<string, any>): Promise<void> {
         return this.log('debug', message, context);
     }
 
@@ -154,7 +154,7 @@ export class Logger {
      * @param message - The message content.
      * @param context - Optional context.
      */
-    notice(message: string, context?: Record<string, any>) {
+    notice(message: string, context?: Record<string, any>): Promise<void> {
         return this.log('notice', message, context);
     }
 }

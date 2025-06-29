@@ -101,20 +101,20 @@ export class Pipeline<T = any> {
             if (i <= index) {
                 throw new Error('Pipeline: next() called multiple times');
             }
-        
+
             index = i;
-        
+
             if (i === this.pipes.length) {
                 return value;
             }
-        
+
             const pipe = this.pipes[i];
-            const next = (val: T) => dispatch(i + 1, val);
-        
+            const next = (val: T):Promise<T> => dispatch(i + 1, val);
+
             try {
                 const instance = new (pipe as new () => PipeClass<T>)();
                 return await instance.handle(value, next);
-            } catch (e) {
+            } catch (_e) {
                 return await (pipe as PipeHandler<T>)(value, next);
             }
         };

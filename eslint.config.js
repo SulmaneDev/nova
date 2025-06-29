@@ -1,7 +1,7 @@
 import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import globals from 'globals';
-import eslintPluginImport from 'eslint-plugin-import'; 
+import eslintPluginImport from 'eslint-plugin-import';
 
 export default defineConfig([
   {
@@ -33,10 +33,25 @@ export default defineConfig([
       '@typescript-eslint': tseslint.plugin,
       import: eslintPluginImport,
     },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: './tsconfig.json',
+        },
+        node: {
+          extensions: ['.js', '.ts'],
+        },
+      },
+    },
     rules: {
       '@typescript-eslint/explicit-function-return-type': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': ['warn', {
+        varsIgnorePattern: '^_',
+        argsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      }],
+      '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-non-null-assertion': 'warn',
       '@typescript-eslint/consistent-type-imports': 'error',
       'no-console': 'warn',
@@ -46,4 +61,5 @@ export default defineConfig([
       'import/no-unresolved': 'error',
     },
   },
+
 ]);

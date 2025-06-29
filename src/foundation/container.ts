@@ -65,8 +65,9 @@ export class Container {
      * @param {Abstract<T>} abstract - The abstract service name or type.
      * @param {Concrete<T>['value']} concrete - The factory or class to bind.
      * @param {boolean} [shared=false] - Whether the binding is a singleton.
+     * @returns {void}
      */
-    public bind<T>(abstract: Abstract<T>, concrete: Concrete<T>['value'], shared?: boolean) {
+    public bind<T>(abstract: Abstract<T>, concrete: Concrete<T>['value'], shared?: boolean): void {
         this.bindings.set(abstract, {
             value: concrete,
             shared: !!shared,

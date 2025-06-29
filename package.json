@@ -40,7 +40,7 @@
     "build": "pnpm build:esm && pnpm build:cjs && pnpm types",
     "build:watch": "pnpm build:esm -- --watch",
     "types": "pnpm tsc --emitDeclarationOnly --declarationDir dist/types",
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint src --ext .ts,.js",
     "release": "standard-version",
     "prepare": "husky install",
     "clean": "rm -rf dist",

@@ -1,5 +1,5 @@
 import { Container } from './container.js';
-import { ServiceProvider } from './provider.js';
+import { type ServiceProvider } from './provider.js';
 import { Emitter } from './emitter.js';
 import { Logger } from './logger.js';
 
@@ -164,8 +164,9 @@ export class Application extends Container {
      * Mark the given provider as registered.
      * @param {string} provider
      * @param {ServiceProvider} instance
+     * @returns {void}
      */
-    protected markedAsRegistered(provider: string, instance: ServiceProvider) {
+    protected markedAsRegistered(provider: string, instance: ServiceProvider): void {
         this.serviceProviders.set(provider, instance);
         this.loadedProviders.set(provider, true);
     }
@@ -181,7 +182,10 @@ export class Application extends Container {
         if (existing && !force) {
             return existing;
         }
-        const instance = this.serviceProviders.get(provider)!;
+        const instance = this.serviceProviders.get(provider);
+        if (!instance) {
+            throw new Error(`Service provider [${provider}] is not registered.`);
+        }
         instance.register();
         this.markedAsRegistered(provider, instance);
         return instance;
@@ -215,8 +219,9 @@ export class Application extends Container {
 
     /**
      * Flush the container of all bindings and resolved instances.
+     * @returns {void}
      */
-    public flush() {
+    public flush():void {
         this.buildStack = [];
     }
 }
